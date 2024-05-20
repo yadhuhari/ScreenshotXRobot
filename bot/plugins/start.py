@@ -2,24 +2,25 @@ from pyrogram import filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 from ..screenshotbot import ScreenShotBot
+import random
 
+PICS = [
+  "https://telegra.ph/file/4198a7f021bab17dea851.mp4"
+]
 
 @ScreenShotBot.on_message(filters.private & filters.command("start"))
 async def start(c, m):
 
-    await m.reply_text(
-        text=f"Hi there {m.from_user.mention}.\n\nI'm Screenshot Generator Bot. I can provide screenshots from "
-        "your video files without downloading the entire file (almost instantly). For more details check /help.",
+    await m.reply_video(
+        video=random.choice(PICS)
+        caption=f"""Hey there {m.from_user.mention} 👋,
+
+I am an Advanced Screenshot X Bot, I can provide the screenshots & sample video of your files..😍
+
+Just Send me a file and see the magic..✨""",
         quote=True,
-        reply_markup=InlineKeyboardMarkup(
-            [
-                [
-                    InlineKeyboardButton(
-                        "Source 😒", url="https://github.com/odysseusmax/animated-lamp"
-                    ),
-                    InlineKeyboardButton("Project Channel", url="https://t.me/odbots"),
-                ],
-                [InlineKeyboardButton("My Father", url="https://t.me/odysseusmax")],
-            ]
-        ),
+        reply_markup=InlineKeyboardMarkup( [[
+        InlineKeyboardButton("Source Code ✨", url="https://github.com/odysseusmax/animated-lamp")
+        ]]
+        )
     )
